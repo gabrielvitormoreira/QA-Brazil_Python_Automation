@@ -21,7 +21,7 @@ class UrbanRoutesPage:
     number_enter = (By.ID, 'phone')
     number_confirm = (By.CSS_SELECTOR, '.button.full')
     number_code = (By.ID, 'code')
-    code_confirm = (By.XPATH, '//button[contains(text(),confirmar)]')
+    code_confirm = (By.XPATH, '//button[contains(text(),"confirmar")]')
     number_finish = (By.CSS_SELECTOR, '.np-text')
 
     #METODO DE PAGAMENTO
@@ -39,7 +39,7 @@ class UrbanRoutesPage:
     #Pedir lenços e cobertor
     switch_blanket = (By.CSS_SELECTOR, '.switch')
     switch_blanket_active = (By.CSS_SELECTOR,
-                             '#root > div > div.workflow-subcontainer > div.tariff-picker.shown > div.form > div.reqs.open > div.reqs-body > div:nth-child(1) > div >')
+                             '#root > div > div.workflow-subcontainer > div.tariff-picker.shown > div.form > div.reqs.open > div.reqs-body > div:nth-child(1) > div')
     #Pedir sorvete
     add_icecream = (By.CSS_SELECTOR, '.counter-plus')
     qnt_icecream = (By.CSS_SELECTOR, '.counter-value')
@@ -47,15 +47,16 @@ class UrbanRoutesPage:
     call_taxi_button = (By.CSS_SELECTOR, '.smart-button')
     pop_up = (By.CSS_SELECTOR, '.order-header-tittle')
 
-def __init__(self, driver):
-    self.driver = driver
+class UrbanRoutesPage:
+    def __init__(self, driver):
+        self.driver = driver
 
 def enter_from_location(self, from_text):
-    self.driver.find_element(*self.from_field).send.keys(from_text)
+    self.driver.find_element(*self.from_field).send_keys(from_text)
 
 def enter_to_location(self, to_text):
-    self.driver.find_element(*self.to_field).send.keys(to_text)
-
+    self.driver.find_element(*self.from_field).send_keys(from_text)
+    
 def enter_locations(self, from_text, to_text):
     self.enter_from_location(from_text)
     self.enter_to_location(to_text)
@@ -94,50 +95,50 @@ def click_number_text(self, telefone):
 
     self.driver.find_element(*self.code_confirm).click()
 
-    def numero_confirmado(self):
-        numero = WebDriverWait(self.driver, timeout=10).until(
-            EC.visibility_of_element_located(self.number_finish))
-        return numero.text
+def numero_confirmado(self):
+    numero = WebDriverWait(self.driver, timeout=10).until(
+        EC.visibility_of_element_located(self.number_finish))
+    return numero.text
 
-    def click_add_cartao(self,cartao,code):
-        self.driver.find_element(*self.add_metodo_pagamento).click()
-        self.driver.find_element(*self.add_card).click()
-        time.sleep(3)
-        self.driver.find_element(*self.number_card).send_keys(cartao)
-        time.sleep(1)
-        self.driver.find_element(*self.code_card).send_keys(code)
-        time.sleep(1)
-        self.driver.find_element(*self.add_finish_card).click()
-        self.driver.find_element(*self.close_button_card).click()
+def click_add_cartao(self,cartao,code):
+    self.driver.find_element(*self.add_metodo_de_pagamento).click()
+    self.driver.find_element(*self.add_card).click()
+    time.sleep(3)
+    self.driver.find_element(*self.number_card).send_keys(cartao)
+    time.sleep(1)
+    self.driver.find_element(*self.code_card).send_keys(code)
+    time.sleep(1)
+    self.driver.find_element(*self.add_finish_card).click()
+    self.driver.find_element(*self.close_button_card).click()
 
-    def confirm_cartao(self):
-        return self.driver.find_element(*self.confirm_card).text
+def confirm_cartao(self):
+    return self.driver.find_element(*self.confirm_card).text
 
-    def add_comentario(self, comentario):
-        self.driver.find_element(*self.add_comment).send_keys(comentario)
+def add_comentario(self, comentario):
+    self.driver.find_element(*self.add_comment).send_keys(comentario)
 
-    def coment_confirm(self):
-        return self.driver.find_element(*self.add_comment).get_attribute("value")
+def coment_confirm(self):
+    return self.driver.find_element(*self.add_comment).get_attribute("value")
 
-    def switch_cobertor(self):
-        switch_ativo = self.driver.find_element(*self.switch_blanket)
-        switch_ativo.click()
+def switch_cobertor(self):
+    switch_ativo = self.driver.find_element(*self.switch_blanket)
+    switch_ativo.click()
 
-    def switch_cobertor_active(self):
-        switch = WebDriverWait(self.driver, timeout=10).until(
-            EC.presence_of_element_located(self.switch_blanket_active))
-        return switch.is_selected()
-
-    def add_ice(self):
+def switch_cobertor_active(self):
+    switch = WebDriverWait(self.driver, timeout=10).until(
+        EC.presence_of_element_located(self.switch_blanket_active))
+    return switch.is_selected()
+    
+def add_ice(self):
         self.driver.find_element(*self.add_icecream).click()
 
-    def qnt_sorvete(self):
-        return self.driver.find_element(*self.qnt_icecream).text
+def qnt_sorvete(self):
+    return self.driver.find_element(*self.qnt_icecream).text
 
-    def call_taxi(self):
-        self.driver.find_element(*self.call_taxi_button).click()
+def call_taxi(self):
+    self.driver.find_element(*self.call_taxi_button).click()
 
-    def pop_up_show(self):
-        pop_up = WebDriverWait(self.driver, timeout=10).until(
-            EC.presence_of_element_located(self.pop_up))
-        return pop_up.text
+def pop_up_show(self):
+    pop_up = WebDriverWait(self.driver, timeout=10).until(
+        EC.presence_of_element_located(self.pop_up))
+    return pop_up.text
