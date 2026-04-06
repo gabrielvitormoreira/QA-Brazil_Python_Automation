@@ -1,6 +1,7 @@
 import data
 
 import helpers
+from pages import UrbanRoutesPage
 from pages import enter_from_locations
 from selenium import webdriver
 from selenium.webdriver import Chrome
@@ -46,7 +47,7 @@ class TestUrbanRoutes:
         routes_page.enter_locations(data.ADDRESS_FROM, data.ADDRESS_TO)
         routes_page.click_taxi_option()
         routes_page.click_comfort_icon()
-        routes_pages.click_number_text(data.PHONE_NUMBER)
+        routes_page.click_number_text(data.PHONE_NUMBER)
         assert data.PHONE_NUMBER in routes_page.numero_confirmado()
         time.sleep(10)
 
@@ -90,8 +91,9 @@ class TestUrbanRoutes:
         routes_page.click_comfort_icon()
         for _ in range(2):
             routes_page.add_ice()
-            assert int(routes_page.qnt_sorvete()) == 2
-            time.sleep(10)
+            
+        assert int(routes_page.qnt_sorvete()) == 2
+        time.sleep(10)
 
     def test_car_search_model_appears(self):
         self.driver.get(data.URBAN_ROUTES_URL)
