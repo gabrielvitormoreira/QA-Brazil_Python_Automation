@@ -12,7 +12,7 @@ class UrbanRoutesPage:
     to_field = (By.ID, 'to')
 
     # Selecionar  tarifa e chamar taxi
-    taxi_option_locator = (By.XPATH, '//button[contains(text(), "chamar")]')
+    comfort_option_locator = (By.XPATH, '//button[contains(text(), "chamar")]')
     comfort_icon_locator = (By.XPATH, '//img[@src="/static/media/kids.075fd8d4.svg"]')
     comfort_active = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[1]/div[5]')
 
